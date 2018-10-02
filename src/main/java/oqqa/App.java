@@ -17,14 +17,15 @@ public class App
         Map<String, Double> kek2 = new HashMap<String, Double>();
 
         
-        kek.add("(-∞, x1] U [x2, +∞)");  
-        kek.add("(-∞, x1] U [x2, x3] U … U [x4, +∞)");  
-        kek.add("[x1, x2]");  
-         
+        kek.add("[x1, x5]");
+        kek.add("(-∞, x2] U [x4, +∞)");
+        kek.add("[x1, x3]");
+
         kek2.put("x1", 2.);
-        kek2.put("x2", 5.);
-        kek2.put("x3", 10.);
-        kek2.put("x4", 30.);
+        kek2.put("x2", 4.);
+        kek2.put("x3", 12.);
+        kek2.put("x4", 8.);
+        kek2.put("x5", 10.);
         
 
         SubsetLib obj = new SubsetLib(kek, kek2);
@@ -32,7 +33,7 @@ public class App
         
         System.out.println( "Задача 1:" );
 
-        Double number = obj.getAproxNumber(5.4);
+        Double number = obj.getAproxNumber(6.1);
         System.out.println( number );
         
 
