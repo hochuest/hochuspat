@@ -1,3 +1,5 @@
+// можно заменить Double на Float
+
 package oqqa;
 
 import java.util.ArrayList;
@@ -6,7 +8,33 @@ import java.util.Map;
 
 public class SubsetLib 
 {
-     
+    public List<List<Double[]>> dataSubsets;
+    public List<Double[]> intersections;
+
+    SubsetLib(List<String> veryBadSubsets, Map<String, Double> param)
+    {
+        dataSubsets = Parser(ReplaceData(veryBadSubsets, param));
+
+        intersections = GetLibIntersections(dataSubsets);
+    }
+
+    SubsetLib(List<List<Double[]>> goodSubsets)
+    {
+        dataSubsets = goodSubsets;
+
+        intersections = GetLibIntersections(dataSubsets);
+    }
+
+    List<Double[]> getIntersections()
+    {
+        return intersections;
+    }
+
+    Double getAproxNumber(Double num)
+    {
+        return Task1_Start(num, intersections);
+    }
+
     static Double[] Logic(Double[] a, Double[] b)
     {
         if ( ( a[0] > b[1] ) || ( a[1] < b[0] ) )
@@ -39,7 +67,7 @@ public class SubsetLib
         return localIntersections;
     }
 
-    static List<Double[]> GetIntersections(List<List<Double[]>> Subsets)
+    static List<Double[]> GetLibIntersections(List<List<Double[]>> Subsets)
     {
         if (Subsets.size() < 2) return null;
 
@@ -97,10 +125,10 @@ public class SubsetLib
 
     static List<Double[]> Task2_DeepStart(List<String> badSubsets)
     {
-        return GetIntersections(Parser(badSubsets));
+        return GetLibIntersections(Parser(badSubsets));
     }
 
-    static List<Double[]> Task2_Start(List<String> veryBadSubsets, Map<String, Double> param)
+    static List<String> ReplaceData(List<String> veryBadSubsets, Map<String, Double> param)
     {
         // подмена на значения
         for (int i = 0; i < veryBadSubsets.size(); i++)
@@ -110,8 +138,12 @@ public class SubsetLib
                 veryBadSubsets.set(i, veryBadSubsets.get(i).replace(k.getKey(), k.getValue().toString() ) );
             }
         }
+        return veryBadSubsets;
+    }
 
-        return Task2_DeepStart(veryBadSubsets);
+    static List<Double[]> Task2_Start(List<String> veryBadSubsets, Map<String, Double> param)
+    {
+        return Task2_DeepStart(ReplaceData(veryBadSubsets, param));
     }
    
     static Double Task1_Start(Double num, List<Double[]> Intersections)
