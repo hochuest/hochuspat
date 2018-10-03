@@ -2,7 +2,6 @@ package oqqa;
 
 import oqqa.SubsetLib;
 
-// интересно было бы узнать как обойтись без зависимостей..
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;

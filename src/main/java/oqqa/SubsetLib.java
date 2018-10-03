@@ -1,5 +1,3 @@
-// можно заменить Double на Float
-
 package oqqa;
 
 import java.util.ArrayList;
